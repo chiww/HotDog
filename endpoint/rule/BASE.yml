@@ -1,0 +1,328 @@
+---
+# 样例说明:
+#- id: C0037                                         # 规则ID,规则的唯一标示
+#  name: 进程执行文件状态                               # 规则名称
+#  description: 获取/proc/*/exe文件状态                # 规则的描述
+#  category: sysenv                                  # 规则的分类, 便于后台统计
+#  source:                                           # 数据采集方法
+#    action:                                         # 基础动作
+#      method: filewalk                              # 采集方法, filewalk, filestrings, filestats, stdout
+#      from: "/proc"                                 # 数据来源
+#      filter: '/proc/\d+/exe'                       # 过滤条件
+#    format:                                         # 进一步的操作
+#      method: filestats                             # 同 action.method
+#  parser:                                           # 服务器端对该类数据的解析方法
+#    method: filestats                               # 解析函数方法的名称
+#    args: []                                        # 参数，可自定义，服务器端对该类数据的参数
+#    kwargs: {}                                      # 参数，可自定义，服务器端对该类数据的参数
+
+- id: C0001
+  name: 计划任务01
+  description: 获取计划任务信息
+  category: schedule
+  source:
+    action:
+      method: filewalk
+      from: "/var/spool/cron"
+    format:
+      method: filestrings
+- id: C0002
+  name: 计划任务02
+  description: 获取计划任务信息
+  category: schedule
+  source:
+    action:
+      method: filestrings
+      from: "/etc/crontab"
+- id: C0003
+  name: 计划任务03
+  description: 获取计划任务信息
+  category: schedule
+  source:
+    action:
+      method: filewalk
+      from: "/etc/cron.d"
+    format:
+      method: filestrings
+- id: C0004
+  name: 计划任务04
+  description: 获取计划任务信息
+  category: schedule
+  source:
+    action:
+      method: filewalk
+      from: "/etc/cron.daily"
+    format:
+      method: filestrings
+- id: C0005
+  name: 计划任务05
+  description: 获取计划任务信息
+  category: schedule
+  source:
+    action:
+      method: filewalk
+      from: "/etc/cron.hourly"
+    format:
+      method: filestrings
+- id: C0006
+  name: 计划任务06
+  description: 获取计划任务信息
+  category: schedule
+  source:
+    action:
+      method: filewalk
+      from: "/etc/cron.monthly"
+    format:
+      method: filestrings
+- id: C0007
+  name: 计划任务07
+  description: 获取计划任务信息
+  category: schedule
+  source:
+    action:
+      method: filewalk
+      from: "/etc/cron.weekly"
+    format:
+      method: filestrings
+- id: C0008
+  name: 计划任务08
+  description: 获取计划任务信息
+  category: schedule
+  source:
+    action:
+      method: filestrings
+      from: "/etc/anacrontab"
+- id: C0009
+  name: 计划任务09
+  description: 获取计划任务信息
+  category: schedule
+  source:
+    action:
+      method: filewalk
+      from: "/var/spool/anacron"
+    format:
+      method: filestrings
+- id: C0010
+  name: DNS服务器设置
+  description: 获取DNS服务器本地配置
+  category: network
+  source:
+    action:
+      method: filestrings
+      from: "/etc/resolv.conf"
+- id: C0011
+  name: DNS本地解析
+  description: DNS本地解析设置
+  category: network
+  source:
+    action:
+      method: filestrings
+      from: "/etc/hosts"
+- id: C0012
+  name: iptables信息
+  description: 获取iptables信息
+  category: network
+  source:
+    action:
+      method: stdout
+      from: iptables -L -n
+- id: C0013
+  name: 进程状态01
+  description: 获取进程状态信息
+  category: process
+  source:
+    action:
+      method: stdout
+      from: ps -efwww
+  parser:
+    method: process
+- id: C0014
+  name: 进程bin file stats
+  description: 获取进程状态信息
+  category: process
+  source:
+    action:
+      method: stdout
+      from: "find /proc/*/exe | xargs stat"
+  parser:
+    method: command_stat
+- id: C0015
+  name: 进程树
+  description: 获取进程树字符图
+  category: process
+  source:
+    action:
+      method: stdout
+      from: pstree -als
+- id: C0016
+  name: 登录状态
+  description: 获取当前用户登录状态
+  category: account
+  source:
+    action:
+      method: stdout
+      from: w -i
+  parser:
+    method: wlogin
+- id: C0017
+  name: 登录历史
+  description: 获取登录历史记录
+  category: account
+  source:
+    action:
+      method: stdout
+      from: who /var/log/wtmp
+  parser:
+    method: wtmp
+- id: C0018
+  name: shadow文件
+  description: 获取shadow文件
+  category: account
+  source:
+    action:
+      method: filestrings
+      from: "/etc/shadow"
+  parser:
+    method: shadow
+- id: C0019
+  name: passwd文件
+  description: 获取passwd文件
+  category: account
+  source:
+    action:
+      method: filestrings
+      from: "/etc/passwd"
+  parser:
+    method: password
+- id: C0020
+  name: 登录密钥
+  description: 获取登录密钥
+  category: account
+  source:
+    action:
+      method: filestrings
+      from: "/root/.ssh/authorized_keys"
+- id: C0021
+  name: 网络连接状态
+  description: 获取网络连接状态信息
+  category: network
+  source:
+    action:
+      method: stdout
+      from: netstat -tlunpa
+  parser:
+    method: netstat
+- id: C0022
+  name: 主机IP信息
+  description: 获取主机IP信息
+  category: network
+  source:
+    action:
+      method: stdout
+      from: ip address
+  parser:
+    method: ipaddress
+- id: C0023
+  name: 开机启动
+  description: 获取启动信息
+  category: sysenv
+  source:
+    action:
+      method: stdout
+      from: systemctl list-unit-files
+  parser:
+    method: systemctl
+- id: C0024
+  name: setuid
+  description: 获取Setuid标记文件
+  category: sysenv
+  source:
+    action:
+      method: stdout
+      from: find / ! -path '/proc/*' -type f -perm -4000 | xargs stat
+  parser:
+    method: command_stat
+- id: C0025
+  name: 获取用户环境/root/.bashrc
+  description: 获取用户环境/root/.bashrc
+  category: account
+  source:
+    action:
+      method: filewalk
+      from: "/root/.bashrc"
+    format:
+      method: filestrings
+      filter: "/^\\s*#.*$/d"
+- id: C0026
+  name: 获取用户环境/root/.bash_profile
+  description: 获取用户环境/root/.bash_profile
+  category: account
+  source:
+    action:
+      method: filestrings
+      from: "/root/.bash_profile"
+      filter: "/^\\s*#.*$/d"
+- id: C0027
+  name: 获取用户环境/etc/bashrc
+  description: 获取用户环境/etc/bashrc
+  category: account
+  source:
+    action:
+      method: filestrings
+      from: "/etc/bashrc"
+      filter: "/^\\s*#.*$/d"
+- id: C0028
+  name: 获取用户环境/etc/profile
+  description: 获取用户环境/etc/profile
+  category: sysenv
+  source:
+    action:
+      method: filewalk
+      from: "/etc/profile"
+    format:
+      method: filestrings
+      filter: "/^\\s*#.*$/d"
+- id: C0029
+  name: 获取用户环境/home/*/.bash_profile
+  description: 获取用户环境/home/*/.bash_profile
+  category: account
+  source:
+    action:
+      method: filewalk
+      from: "/home"
+      filter: ".*/\\.bash_profile.*"
+    format:
+      method: filestrings
+      filter: "/^\\s*#.*$/d"
+- id: C0030
+  name: 获取用户环境/home/*/.bashrc
+  description: 获取用户环境/home/*/.bashrc
+  category: account
+  source:
+    action:
+      method: filewalk
+      from: "/home"
+      filter: ".*/\\.bashrc.*"
+    format:
+      method: filestrings
+      filter: "/^\\s*#.*$/d"
+- id: C0031
+  name: 获取执行文件状态/usr/bin
+  description: 获取执行文件状态/usr/bin
+  category: sysenv
+  source:
+    action:
+      method: stdout
+      from: "find /usr/bin/* | xargs stat"
+  parser:
+    method: command_stat
+- id: C0032
+  name: lsof
+  description: lsof
+  category: process
+  source:
+    action:
+      method: stdout
+      from: lsof -F
+  parser:
+    method: lsof
