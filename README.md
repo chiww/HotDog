@@ -7,7 +7,7 @@ Ho(s)tDog 是一个使用Splunk做linux主机安全应急响应的小框架。
 2. `server`实现采集数据的解析与输出到Splunk
 3. `TA-HotDog.tar.gz`是Splunk的一个App
 
-详细内容请查看 [使用Splunk做Linux主机应急响应](https://chiww.github.com/HotDog/blob/master/doc/how_to_make_security_response_in_splunk.md)
+详细内容请查看 [使用Splunk做Linux主机应急响应](https://chiww.github.com/HotDog/blob/main/doc/how_to_make_security_response_in_splunk.md)
 
 ```
 此仓库提供的是一个理论demo，如果要在生产环境使用，需要能够看懂python代码，并具备一定动手能力。
