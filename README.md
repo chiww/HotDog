@@ -15,17 +15,17 @@ Ho(s)tDog 是一个使用Splunk做linux主机安全应急响应的小框架。
 
 ## 效果展示
 **【任务详情】**
-![任务详情](https://github.com/chiww/HotDog/blob/master/static/task_info.gif?raw=true)
+![任务详情](https://github.com/chiww/HotDog/blob/main/static/task_info.gif?raw=true)
 
 **【调查面板】**
-![调查面板](https://github.com/chiww/HotDog/blob/master/static/investigator3.gif?raw=true)
+![调查面板](https://github.com/chiww/HotDog/blob/main/static/investigator3.gif?raw=true)
 
 **【数据钻取】**
-![数据钻取](https://github.com/chiww/HotDog/blob/master/static/data_drill.gif?raw=true)
+![数据钻取](https://github.com/chiww/HotDog/blob/main/static/data_drill.gif?raw=true)
 
 ## 系统框架
 
-![系统框架](https://github.com/chiww/HotDog/blob/master/static/splunk_in_arch_2.png?raw=true)
+![系统框架](https://github.com/chiww/HotDog/blob/main/static/splunk_in_arch_2.png?raw=true)
 
 
 ## 食用方法
@@ -52,9 +52,9 @@ Ho(s)tDog 是一个使用Splunk做linux主机安全应急响应的小框架。
 
 ### Splunk配置
 1. 安装`TA-HotDog.tar.gz`App；
-![Install TA-HotDog](https://github.com/chiww/HotDog/blob/master/static/install_TA-HotDog.gif?raw=true)
+![Install TA-HotDog](https://github.com/chiww/HotDog/blob/main/static/install_TA-HotDog.gif?raw=true)
 2. 配置一个`2021`端口的TCP采集服务，其中`index`、`sourcetype`配置为`hotdog`，其他参数保持默认即可。详见下图:
-![Add Splunk Datasource](https://github.com/chiww/HotDog/blob/master/static/add_splunk_datasource.gif?raw=true)
+![Add Splunk Datasource](https://github.com/chiww/HotDog/blob/main/static/add_splunk_datasource.gif?raw=true)
 
 **注意：**
 默认服务端服务和Splunk部署在同一台机器上，如果不是，请修改`server`目录下`main.py`中的`splunk_connect`值。

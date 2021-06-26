@@ -42,11 +42,11 @@
 
 每个步骤都应该要有相应的模块做能力支撑，最终实现统一平台。因此可以有如下的框架图：
 
-![arch](https://github.com/chiww/HotDog/blob/master/static/arch.png?raw=true)
+![arch](https://github.com/chiww/HotDog/blob/main/static/arch.png?raw=true)
 
 本文中，使用Splunk+运维平台实现一个可持续运行的调查分析框架，如下图：
 
-![splunk_in_arch](https://github.com/chiww/HotDog/blob/master/static/splunk_in_arch.png?raw=true)
+![splunk_in_arch](https://github.com/chiww/HotDog/blob/main/static/splunk_in_arch.png?raw=true)
 
 
 #### 脚本设计
@@ -194,7 +194,7 @@ Splunk定制配置不难，这里不详细展开，有兴趣的同学可以查�
 
 **【任务详情】**
 
-![任务详情](https://github.com/chiww/HotDog/blob/master/static/task_info.gif?raw=true)
+![任务详情](https://github.com/chiww/HotDog/blob/main/static/task_info.gif?raw=true)
 
 查看任务详情：
 
@@ -205,7 +205,7 @@ Splunk定制配置不难，这里不详细展开，有兴趣的同学可以查�
 
 **【调查面板】**
 
-![调查面板](https://github.com/chiww/HotDog/blob/master/static/investigator3.gif?raw=true)
+![调查面板](https://github.com/chiww/HotDog/blob/main/static/investigator3.gif?raw=true)
 
 详细调查分析：
 
@@ -214,7 +214,7 @@ Splunk定制配置不难，这里不详细展开，有兴趣的同学可以查�
 
 **【数据钻取】**
 
-![数据钻取](https://github.com/chiww/HotDog/blob/master/static/data_drill.gif?raw=true)
+![数据钻取](https://github.com/chiww/HotDog/blob/main/static/data_drill.gif?raw=true)
 
 数据关联是整个功能的核心，也是充分发挥Splunk数据钻取能力体现。
 
